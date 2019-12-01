@@ -1,0 +1,57 @@
+openapi: 3.0.2
+info:
+  title: "ぼくのかんがえたさいきょうのAPIドキュメント運用"
+  description: "サンプルアプリ"
+  version: "1.0.0"
+servers:
+  - url: "http://localhost:3000"
+    description: "local api server"
+tags:
+  - name: "users"
+    description: "ユーザーAPI"
+paths:
+  /users:
+    get:
+      summary: "ユーザーを取得"
+      description: "ユーザーを取得"
+      tags:
+        - "users"
+      parameters:
+        - name: "name"
+          description: "名前"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "some_condition"
+          description: "ある条件"
+          in: "query"
+          required: false
+          schema:
+            type: "boolean"
+            example: true
+      responses:
+        200:
+          description: "成功時"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+components:
+  schemas:
+    User:
+      description: "ユーザー"
+      type: "object"
+      properties:
+        name:
+          description: "名前"
+          type: "string"
+          example: "sakuraya"
+        age:
+          description: "年齢"
+          type: "integer"
+          example: 26
+      required:
+        - "name"
+        - "age"
+                      
